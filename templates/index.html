@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expression Converter</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Expression Converter</h1>
+        <form method="post">
+            <label for="conversion">Select Conversion Type:</label>
+            <select name="conversion" id="conversion">
+                <option value="prefix_to_postfix">Prefix to Postfix</option>
+                <option value="prefix_to_infix">Prefix to Infix</option>
+                <option value="postfix_to_infix">Postfix to Infix</option>
+                <option value="postfix_to_prefix">Postfix to Prefix</option>
+                <option value="infix_to_postfix">Infix to Postfix</option>
+                <option value="infix_to_prefix">Infix to Prefix</option>
+            </select>
+            <br><br>
+
+            <label for="expression">Enter Expression: </label>
+            <input type="text" id="expression" name="expression" required>
+            <button type="submit">Convert</button>
+        </form>
+        {% if result %}
+        <h2>Converted Expression:</h2>
+        <p>{{ result }}</p>
+
+        <h2>Step-by-Step debug: </h2>
+        <ul>
+            {% for step in steps %}
+            <li>{{ step }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+</body>
+
+</html>
