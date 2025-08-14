@@ -1,10 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expression Converter</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-$END$
+    <header>
+        <nav>
+            <a href="{{ url_for('index') }}">Home</a>
+            <a href="{{ url_for('convert') }}" class="active">Converter</a>
+            <a href="{{ url_for('math_page') }}">Math</a>
+        </nav>
+    </header>
+
+    <main class="container">
+        <div class="card">
+            <h2>Expression Converter</h2>
+            <form method="post" action="{{ url_for('convert') }}">
+
+
+                <div class="form-group">
+                    <label for="conversion">Conversion Type:</label>
+                    <select id="conversion" name="conversion" required>
+                        <option value="" disabled {% if not conversion_input %}selected{% endif %}>--Select a Conversion--</option>
+                        <option value="infix_to_postfix" {% if conversion_input == 'infix_to_postfix' %}selected{% endif %}>Infix to Postfix</option>
+                        <option value="infix_to_prefix" {% if conversion_input == 'infix_to_prefix' %}selected{% endif %}>Infix to Prefix</option>
+                        <option value="prefix_to_postfix" {% if conversion_input == 'prefix_to_postfix' %}selected{% endif %}>Prefix to Postfix</option>
+                        <option value="prefix_to_infix" {% if conversion_input == 'prefix_to_infix' %}selected{% endif %}>Prefix to Infix</option>
+                        <option value="postfix_to_infix" {% if conversion_input == 'postfix_to_infix' %}selected{% endif %}>Postfix to Infix</option>
+                        <option value="postfix_to_prefix" {% if conversion_input == 'postfix_to_prefix' %}selected{% endif %}>Postfix to Prefix</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="expression">Expression:</label>
+                    <input type="text" id="expression" name="expression" value="{{ expression_input or '' }}" placeholder="e.g., (A+B)*C" required>
+                </div>
+                <button type="submit">Convert</button>
+            </form>
+        </div>
+
+        {% if result %}
+        <div class="card result-card">
+            <h3>Result</h3>
+            <p class="result-text {% if 'Error' in result %}error-text{% endif %}">{{ result }}</p>
+            {% if steps %}
+                <h4>Debug Steps:</h4>
+                <ul class="steps-list">
+                    {% for step in steps %}
+                        <li>{{ step }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+        {% endif %}
+    </main>
+
+    <footer>
+        <p>Toolkit App &copy; 2025</p>
+    </footer>
 </body>
 </html>
