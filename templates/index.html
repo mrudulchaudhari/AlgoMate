@@ -4,12 +4,25 @@
 
 {% block content %}
 <div class="card welcome-card">
-    <h1>Welcome to the Toolkit!</h1>
-    <p>Your one-stop destination for mathematical conversions and calculations.</p>
+    <h1>🚀 Welcome to the Ultimate Toolkit!</h1>
+    <p>Streamline your computations and conversions effortlessly. Whether you’re solving math problems, experimenting with expressions, or managing arrays, we’ve got you covered.</p>
+    
     <div class="tool-selection">
-        <a href="{{ url_for('convert') }}" class="button-link">Expression Converter</a>
-        <a href="{{ url_for('math_page') }}" class="button-link">Math Functions</a>
-        <a href="{{ url_for('array_toolkit', sub='sorting') }}" class="button-link">Array</a>
+        <a href="{{ url_for('convert') }}" class="button-link">
+            <strong>📝 Expression Converter</strong>
+            <span>Convert between infix, postfix, and prefix with step-by-step guidance.</span>
+        </a>
+
+        <a href="{{ url_for('math_page') }}" class="button-link">
+            <strong>🔢 Math Functions</strong>
+            <span>Quickly calculate factorials, Fibonacci series, prime numbers, and more.</span>
+        </a>
+
+        <a href="{{ url_for('array_toolkit', sub='sorting') }}" class="button-link">
+            <strong>📊 Array Toolkit</strong>
+            <span>Perform searches, sorting, and array operations with visualized steps.</span>
+        </a>
     </div>
 </div>
+
 {% endblock %}
