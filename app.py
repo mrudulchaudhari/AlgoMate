@@ -3,6 +3,7 @@ from main import ExpressionConverter, MathFunctions
 from array_module import SortingFunctions, ArraySearch, ArrayOperations
 
 app = Flask(__name__, static_folder='static')
+app.config['VERSION'] = '1.0.0'
 
 # Initialize classes once
 converter = ExpressionConverter()
