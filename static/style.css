@@ -200,3 +200,39 @@ button:hover, .button-link:hover {
     }
     nav { flex-direction: column; gap: 0.5em; }
 }
+/* Sorting-specific styling */
+select {
+    background-color: #fff;
+}
+
+.steps-list li {
+    margin-bottom: 0.5em;
+}
+
+/* Secondary Navbar for Array Page */
+.sub-nav {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.sub-nav a {
+    padding: 8px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #333;
+    background-color: #f0f0f0;
+    font-weight: 500;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.sub-nav a:hover {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.sub-nav a.active {
+    background-color: #007bff;
+    color: #fff;
+}
+
