@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+
+{% block title %}Array Toolkit{% endblock %}
+
+{% block content %}
+<!-- Sub Navbar for Array Tools -->
+<div class="sub-nav">
+    <a href="{{ url_for('array_toolkit', sub='search') }}" class="{% if active_sub=='search' %}active{% endif %}">Search</a>
+    <a href="{{ url_for('array_toolkit', sub='sorting') }}" class="{% if active_sub=='sorting' %}active{% endif %}">Sorting</a>
+    <a href="{{ url_for('array_toolkit', sub='operations') }}" class="{% if active_sub=='operations' %}active{% endif %}">Operations</a>
+</div>
+
+<!-- Dynamic Card based on selected sub-tab -->
+<div class="card">
+    {% if active_sub == 'search' %}
+    <h2>Array Search</h2>
+    <form method="POST">
+        <div class="form-group">
+            <label>Enter numbers (comma separated):</label>
+            <input type="text" name="numbers" value="{{ numbers_input or '' }}" required placeholder="e.g. 5,3,8,1">
+        </div>
+        <div class="form-group">
+            <label>Select Search Algorithm:</label>
+            <select name="search_algorithm" required>
+                <option value="linear" {% if search_algorithm_input=='linear' %}selected{% endif %}>Linear Search</option>
+                <option value="binary" {% if search_algorithm_input=='binary' %}selected{% endif %}>Binary Search</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Search Element:</label>
+            <input type="text" name="search_element" value="{{ search_element_input or '' }}" required placeholder="Element to search">
+        </div>
+        <button type="submit">Search</button>
+    </form>
+
+    {% elif active_sub == 'sorting' %}
+    <h2>Sorting Algorithms</h2>
+    <form method="POST">
+        <div class="form-group">
+            <label>Enter numbers (comma separated):</label>
+            <input type="text" name="numbers" value="{{ numbers_input or '' }}" required placeholder="e.g. 5,3,8,1">
+        </div>
+        <div class="form-group">
+            <label>Select Algorithm:</label>
+            <select name="algorithm" required>
+                <option value="bubble" {% if algorithm_input=='bubble' %}selected{% endif %}>Bubble Sort</option>
+                <option value="insertion" {% if algorithm_input=='insertion' %}selected{% endif %}>Insertion Sort</option>
+                <option value="selection" {% if algorithm_input=='selection' %}selected{% endif %}>Selection Sort</option>
+                <option value="merge" {% if algorithm_input=='merge' %}selected{% endif %}>Merge Sort</option>
+                <option value="counting" {% if algorithm_input=='counting' %}selected{% endif %}>Counting Sort</option>
+                <option value="quick" {% if algorithm_input=='quick' %}selected{% endif %}>Quick Sort</option>
+            </select>
+        </div>
+        <button type="submit">Sort</button>
+    </form>
+
+    {% elif active_sub == 'operations' %}
+    <h2>Array Operations</h2>
+    <form method="POST">
+        <div class="form-group">
+            <label>Enter numbers (comma separated):</label>
+            <input type="text" name="numbers" value="{{ numbers_input or '' }}" required placeholder="e.g. 5,3,8,1">
+        </div>
+        <div class="form-group">
+            <label>Select Operation:</label>
+            <select name="operation" required>
+                <option value="sum" {% if operation_input=='sum' %}selected{% endif %}>Sum</option>
+                <option value="product" {% if operation_input=='product' %}selected{% endif %}>Product</option>
+                <option value="reverse" {% if operation_input=='reverse' %}selected{% endif %}>Reverse</option>
+                <option value="rotate_left" {% if operation_input=='rotate_left' %}selected{% endif %}>Rotate Left</option>
+                <option value="rotate_right" {% if operation_input=='rotate_right' %}selected{% endif %}>Rotate Right</option>
+                <option value="remove_duplicates" {% if operation_input=='remove_duplicates' %}selected{% endif %}>Remove Duplicates</option>
+                <option value="max_min" {% if operation_input=='max_min' %}selected{% endif %}>Max / Min</option>
+            </select>
+        </div>
+        <button type="submit">Execute</button>
+    </form>
+    {% endif %}
+</div>
+
+<!-- Result Section -->
+{% if result %}
+<div class="card result-card">
+    <h3>Result</h3>
+    {% if active_sub == 'sorting' %}
+    <h4>{{ algo_name }}</h4>
+    {% elif active_sub == 'operations' %}
+    <h4>{{ operation_name }}</h4>
+    {% elif active_sub == 'search' %}
+    <h4>Search Result</h4>
+    {% endif %}
+    <div class="result-text">{{ result }}</div>
+
+    {% if steps %}
+    <h4>Steps</h4>
+    <ul class="steps-list">
+        {% for step in steps %}
+        <li>{{ step }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+</div>
+{% endif %}
+{% endblock %}

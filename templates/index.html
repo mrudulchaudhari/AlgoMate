@@ -1,33 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Expression & Math Toolkit</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style1.css') }}">
-</head>
-<body>
-    <header>
-        <nav>
-            <a href="{{ url_for('index') }}" class="active">Home</a>
-            <a href="{{ url_for('convert') }}">Converter</a>
-            <a href="{{ url_for('math_page') }}">Math</a>
-        </nav>
-    </header>
+{% extends "base.html" %}
 
-    <main class="container">
-        <div class="card welcome-card">
-            <h1>Welcome to the Toolkit!</h1>
-            <p>Your one-stop destination for mathematical conversions and calculations.</p>
-            <div class="tool-selection">
-                <a href="{{ url_for('convert') }}" class="button-link">Expression Converter</a>
-                <a href="{{ url_for('math_page') }}" class="button-link">Math Functions</a>
-            </div>
-        </div>
-    </main>
+{% block title %}Home - Toolkit{% endblock %}
 
-    <footer>
-        <p>Toolkit App &copy; 2025</p>
-    </footer>
-</body>
-</html>
+{% block content %}
+<div class="card welcome-card">
+    <h1>Welcome to the Toolkit!</h1>
+    <p>Your one-stop destination for mathematical conversions and calculations.</p>
+    <div class="tool-selection">
+        <a href="{{ url_for('convert') }}" class="button-link">Expression Converter</a>
+        <a href="{{ url_for('math_page') }}" class="button-link">Math Functions</a>
+        <a href="{{ url_for('array_toolkit', sub='sorting') }}" class="button-link">Array</a>
+    </div>
+</div>
+{% endblock %}

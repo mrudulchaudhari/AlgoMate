@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Toolkit{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="{{ url_for('index') }}" class="{% if active_page=='home' %}active{% endif %}">Home</a>
+            <a href="{{ url_for('convert') }}" class="{% if active_page=='convert' %}active{% endif %}">Converter</a>
+            <a href="{{ url_for('math_page') }}" class="{% if active_page=='math' %}active{% endif %}">Math</a>
+            <a href="{{ url_for('array_toolkit', sub='sorting') }}" class="{% if active_page=='array' %}active{% endif %}">Array</a>
+
+        </nav>
+
+        {% if secondary_nav %}
+            <nav class="secondary-nav">
+                <a href="{{ url_for('array_toolkit', sub='search') }}" class="{% if active_section=='search' %}active{% endif %}">Search</a>
+                <a href="{{ url_for('array_toolkit', sub='sorting') }}" class="{% if active_section=='sorting' %}active{% endif %}">Sorting</a>
+                <a href="{{ url_for('array_toolkit', sub='operations') }}" class="{% if active_section=='operations' %}active{% endif %}">Operations</a>
+            </nav>
+{% endif %}
+    </header>
+
+    <main class="container">
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer>
+        <p>Toolkit App &copy; 2025</p>
+    </footer>
+</body>
+</html>
