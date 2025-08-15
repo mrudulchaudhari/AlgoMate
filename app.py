@@ -16,7 +16,7 @@ operations_func = ArrayOperations()
 @app.route("/")
 def index():
     """Home page with navigation to tools"""
-    return render_template("index.html")
+    return render_template("index.html", active_page="home")
 
 
 @app.route("/convert", methods=["GET", "POST"])
@@ -61,6 +61,7 @@ def convert():
         steps=steps,
         expression_input=expression_input,
         conversion_input=conversion_input,
+        active_page="convert"
     )
 
 
@@ -98,6 +99,7 @@ def math_page():
         result=result,
         number_input=number_input,
         operation_input=operation_input,
+        active_page="math"
     )
 
 
@@ -183,6 +185,7 @@ def array_toolkit():
         operation_input=operation_input,
         algo_name=algo_name,
         operation_name=operation_name,
+        active_page="array"
     )
 
 
