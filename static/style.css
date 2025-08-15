@@ -236,3 +236,21 @@ select {
     color: #fff;
 }
 
+
+.features-card {
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 12px;
+    background: #f5f7fa;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.features-list {
+    list-style: inside disc;
+    margin-top: 10px;
+    line-height: 1.6;
+}
+
+.features-list li {
+    margin-bottom: 8px;
+}

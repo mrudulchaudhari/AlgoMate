@@ -4,25 +4,24 @@
 
 {% block content %}
 <div class="card welcome-card">
-    <h1>🚀 Welcome to the Ultimate Toolkit!</h1>
-    <p>Streamline your computations and conversions effortlessly. Whether you’re solving math problems, experimenting with expressions, or managing arrays, we’ve got you covered.</p>
-    
+    <h1>Hey there! 👋 Welcome to the Ultimate Math & DSA Toolkit</h1>
+    <p>Whether you want to play around with expressions, crunch some numbers, or master array tricks, you've landed at the right place! Dive in and explore the tools we’ve built just for you.</p>
+
     <div class="tool-selection">
-        <a href="{{ url_for('convert') }}" class="button-link">
-            <strong>📝 Expression Converter</strong>
-            <span>Convert between infix, postfix, and prefix with step-by-step guidance.</span>
-        </a>
-
-        <a href="{{ url_for('math_page') }}" class="button-link">
-            <strong>🔢 Math Functions</strong>
-            <span>Quickly calculate factorials, Fibonacci series, prime numbers, and more.</span>
-        </a>
-
-        <a href="{{ url_for('array_toolkit', sub='sorting') }}" class="button-link">
-            <strong>📊 Array Toolkit</strong>
-            <span>Perform searches, sorting, and array operations with visualized steps.</span>
-        </a>
+        <a href="{{ url_for('convert') }}" class="button-link">Expression Converter</a>
+        <a href="{{ url_for('math_page') }}" class="button-link">Math Functions</a>
+        <a href="{{ url_for('array_toolkit', sub='sorting') }}" class="button-link">Array Toolkit</a>
     </div>
 </div>
 
+<!-- Features Overview Section -->
+<div class="card features-card">
+    <h2>What you can do here:</h2>
+    <ul class="features-list">
+        <li><strong>Expression Conversions:</strong> Infix ⇄ Postfix, Infix ⇄ Prefix, Postfix ⇄ Prefix, and more!</li>
+        <li><strong>Math Tools:</strong> Factorials, Fibonacci series, Prime checks, Next prime finder, etc.</li>
+        <li><strong>Array Toolkit:</strong> Sorting, Searching (Linear & Binary), Array Operations like Sum, Product, Rotate, Reverse, Remove Duplicates, Max/Min.</li>
+    </ul>
+    <p>Everything is designed to be interactive and easy-to-use — just enter your input, pick an operation, and watch the magic happen!</p>
+</div>
 {% endblock %}
