@@ -5,31 +5,48 @@
 {% block content %}
 <div class="card">
     <h2>Math Operations</h2>
-    <form method="post" action="{{ url_for('math_page') }}">
-        <div class="form-group">
-            <label for="operation">Select Operation:</label>
-            <select id="operation" name="operation" required>
-                <option value="" disabled {% if not operation_input %}selected{% endif %}>--Select an Operation--</option>
-                <option value="factorial" {% if operation_input == 'factorial' %}selected{% endif %}>Factorial</option>
-                <option value="fibonacci" {% if operation_input == 'fibonacci' %}selected{% endif %}>N-th Fibonacci Term</option>
-                <option value="is_prime" {% if operation_input == 'is_prime' %}selected{% endif %}>Check Prime</option>
-                <option value="next_prime" {% if operation_input == 'next_prime' %}selected{% endif %}>Next Prime</option>
-            </select>
-        </div>
+    <form method="POST">
+    <label for="operation">Choose operation:</label>
+    <select name="operation" id="operation" onchange="toggleSecondNumber()">
+        <option value="factorial" {% if operation_input=='factorial' %}selected{% endif %}>Factorial</option>
+        <option value="fibonacci" {% if operation_input=='fibonacci' %}selected{% endif %}>Fibonacci</option>
+        <option value="is_prime" {% if operation_input=='is_prime' %}selected{% endif %}>Is Prime?</option>
+        <option value="next_prime" {% if operation_input=='next_prime' %}selected{% endif %}>Next Prime</option>
+        <option value="lcm" {% if operation_input=='lcm' %}selected{% endif %}>LCM</option>
+        <option value="hcf" {% if operation_input=='hcf' %}selected{% endif %}>HCF</option>
+    </select>
 
-        <div class="form-group">
-            <label for="number">Enter a Number:</label>
-            <input type="number" id="number" name="number" value="{{ number_input or '' }}" placeholder="e.g., 5" required>
-        </div>
+    <label for="number">Enter number:</label>
+    <input type="text" name="number" value="{{ number_input }}">
 
-        <button type="submit">Calculate</button>
-    </form>
-</div>
+    <!-- Second number input -->
+    <div id="second-number" style="display: none;">
+        <label for="number2">Enter second number:</label>
+        <input type="text" name="number2" value="{{ number2_input }}">
+    </div>    
+
+    <button type="submit">Calculate</button>
+</form>
 
 {% if result is not none %}
-<div class="card result-card">
-    <h3>Result</h3>
-    <p class="result-text {% if 'Error' in result %}error-text{% endif %}">{{ result }}</p>
-</div>
+    <h3>Result: {{ result }}</h3>
 {% endif %}
+
+<script>
+function toggleSecondNumber() {
+    const operation = document.getElementById("operation").value;
+    const secondInput = document.getElementById("second-number");
+
+    if (operation === "lcm" || operation === "hcf") {
+        secondInput.style.display = "block";
+    } else {
+        secondInput.style.display = "none";
+    }
+}
+
+// ✅ Call it once when page loads (to persist UI after reload)
+toggleSecondNumber();
+</script>
+</div>
+
 {% endblock %}
