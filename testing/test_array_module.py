@@ -1,5 +1,23 @@
 import unittest
-from array_module import ArrayOperations
+from array_module import ArrayOperations, ArraySearch
+
+
+class TestArraySearch(unittest.TestCase):
+    def setUp(self):
+        self.search = ArraySearch()
+
+    def test_linear_search_debug(self):
+        self.assertEqual(self.search.linear_search_debug([1, 2, 3], 2), (1, ['Check index 0: 1', 'Check index 1: 2']))
+        self.assertEqual(self.search.linear_search_debug([1, 2, 3], 4), (-1, ['Check index 0: 1', 'Check index 1: 2', 'Check index 2: 3']))
+        self.assertEqual(self.search.linear_search_debug([], 1), (-1, []))  
+        self.assertEqual(self.search.linear_search_debug([5, 3, 8], 5), (0, ['Check index 0: 5']))
+
+    def test_binary_search_debug(self):
+        self.assertEqual(self.search.binary_search_debug([1, 2, 3, 4], 3), (2, ['Check middle index 1: 2', 'Check middle index 2: 3']))
+        self.assertEqual(self.search.binary_search_debug([1, 2, 3, 4], 5), (-1, ['Check middle index 1: 2', 'Check middle index 2: 3', 'Check middle index 3: 4']))
+        self.assertEqual(self.search.binary_search_debug([], 1), (-1, []))  
+        self.assertEqual(self.search.binary_search_debug([5, 3, 8], 5), (0, ['Check middle index 0: 5']))
+        self.assertEqual(self.search.binary_search_debug([1, 2, 3, 4], 1), (0, ['Check middle index 1: 2', 'Check middle index 0: 1']))
 
 
 class TestArrayOperations(unittest.TestCase):
@@ -73,3 +91,5 @@ class TestArrayOperations(unittest.TestCase):
         self.assertEqual(self.operations.mode([]), None)
         self.assertEqual(self.operations.mode([5]), 5)
         self.assertEqual(self.operations.mode([1, 2, 3]), None)
+
+
