@@ -45,7 +45,6 @@
                 <option value="merge" {% if algorithm_input=='merge' %}selected{% endif %}>Merge Sort</option>
                 <option value="counting" {% if algorithm_input=='counting' %}selected{% endif %}>Counting Sort</option>
                 <option value="quick" {% if algorithm_input=='quick' %}selected{% endif %}>Quick Sort</option>
-
             </select>
         </div>
         <div class="form-group">
@@ -55,31 +54,37 @@
         <button type="submit">Sort</button>
     </form>
 
-    {% elif active_sub == 'operations' %}
-    <h2>Array Operations</h2>
-    <form method="POST">
-        <div class="form-group">
-            <label>Select Operation:</label>
-            <select name="operation" required>
-                <option value="sum" {% if operation_input=='sum' %}selected{% endif %}>Sum</option>
-                <option value="product" {% if operation_input=='product' %}selected{% endif %}>Product</option>
-                <option value="reverse" {% if operation_input=='reverse' %}selected{% endif %}>Reverse</option>
-                <option value="rotate_left" {% if operation_input=='rotate_left' %}selected{% endif %}>Rotate Left</option>
-                <option value="rotate_right" {% if operation_input=='rotate_right' %}selected{% endif %}>Rotate Right</option>
-                <option value="remove_duplicates" {% if operation_input=='remove_duplicates' %}selected{% endif %}>Remove Duplicates</option>
-                <option value="max_min" {% if operation_input=='max_min' %}selected{% endif %}>Max / Min</option>
-                <option value="mean" {% if operation_input=='mean' %}selected{% endif %}>Mean</option>
-                <option value="median" {% if operation_input=='median' %}selected{% endif %}>Median</option>
-                <option value="mode" {% if operation_input=='mode' %}selected{% endif %}>Mode</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label>Enter numbers (comma separated):</label>
-            <input type="text" name="numbers" value="{{ numbers_input or '' }}" required placeholder="e.g. 5,3,8,1">
-        </div>
-        <button type="submit">Execute</button>
-    </form>
-    {% endif %}
+{% elif active_sub == 'operations' %}
+<h2>Array Operations</h2>
+<form method="POST">
+    <div class="form-group">
+        <label>Select Operation:</label>
+        <select id="operation" name="operation" required onchange="toggleSecondNumber()">
+            <option value="sum" {% if operation_input=='sum' %}selected{% endif %}>Sum</option>
+            <option value="product" {% if operation_input=='product' %}selected{% endif %}>Product</option>
+            <option value="reverse" {% if operation_input=='reverse' %}selected{% endif %}>Reverse</option>
+            <option value="rotate_left" {% if operation_input=='rotate_left' %}selected{% endif %}>Rotate Left</option>
+            <option value="rotate_right" {% if operation_input=='rotate_right' %}selected{% endif %}>Rotate Right</option>
+            <option value="remove_duplicates" {% if operation_input=='remove_duplicates' %}selected{% endif %}>Remove Duplicates</option>
+            <option value="max_min" {% if operation_input=='max_min' %}selected{% endif %}>Max / Min</option>
+            <option value="mean" {% if operation_input=='mean' %}selected{% endif %}>Mean</option>
+            <option value="median" {% if operation_input=='median' %}selected{% endif %}>Median</option>
+            <option value="mode" {% if operation_input=='mode' %}selected{% endif %}>Mode</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Enter numbers (comma separated):</label>
+        <input type="text" name="numbers" value="{{ numbers_input or '' }}" required placeholder="e.g. 5,3,8,1">
+    </div>
+    <!-- Second number input for k -->
+    <div id="second-number" style="display: none;">
+        <label for="number2">Enter k value:</label>
+        <input type="text" name="number2" value="{{ number2_input or '' }}">
+    </div>   
+
+    <button type="submit">Execute</button>
+</form>
+{% endif %}
 </div>
 
 <!-- Result Section -->
@@ -105,4 +110,20 @@
     {% endif %}
 </div>
 {% endif %}
+
+<script>
+function toggleSecondNumber() {
+    const operation = document.getElementById("operation").value;
+    const secondInput = document.getElementById("second-number");
+
+    if (operation === "rotate_left" || operation === "rotate_right") {
+        secondInput.style.display = "block";
+    } else {
+        secondInput.style.display = "none";
+    }
+}
+
+// Ensure toggle runs after DOM loads (persist UI state)
+document.addEventListener("DOMContentLoaded", toggleSecondNumber);
+</script>
 {% endblock %}
