@@ -92,3 +92,6 @@ class TestArrayOperations(unittest.TestCase):
         self.assertEqual(self.operations.mode([1, 2, 3]), [1, 2, 3])  # No mode, all unique
 
 
+if __name__ == '__main__':
+    unittest.main()
+
