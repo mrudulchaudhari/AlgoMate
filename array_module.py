@@ -1,3 +1,5 @@
+from collections import Counter
+
 class SortingFunctions:
     "Class with sorting algorithms and step by step debugging"
 
@@ -191,10 +193,14 @@ class ArrayOperations:
         return arr[::-1]
 
     def rotate_left(self, arr, k=1):
+        if not arr:
+            return []
         k %= len(arr)
         return arr[k:] + arr[:k]
 
     def rotate_right(self, arr, k=1):
+        if not arr:
+            return []
         k %= len(arr)
         return arr[-k:] + arr[:-k]
 
@@ -208,8 +214,9 @@ class ArrayOperations:
         return result
 
     def max_min(self, arr):
-        return max(arr), min(arr)
-    
+        if not arr:
+            return (None, None)
+        return (max(arr), min(arr))
 
     def mean(self, arr):
         if not arr:
@@ -230,8 +237,7 @@ class ArrayOperations:
     def mode(self, arr):
         if not arr:
             return []
-        frequency = {}
-        for num in arr:
-            frequency[num] = frequency.get(num, 0) + 1
-        max_freq = max(frequency.values())
-        return [num for num, freq in frequency.items() if freq == max_freq]
+        counts = Counter(arr)
+        max_freq = max(counts.values())
+        modes = [num for num, freq in counts.items() if freq == max_freq]
+        return modes[0] if len(modes) == 1 else modes
