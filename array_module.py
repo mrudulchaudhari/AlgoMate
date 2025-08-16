@@ -209,3 +209,29 @@ class ArrayOperations:
 
     def max_min(self, arr):
         return max(arr), min(arr)
+    
+
+    def mean(self, arr):
+        if not arr:
+            return 0
+        return sum(arr) / len(arr)
+    
+
+    def median(self, arr):
+        if not arr:
+            return 0
+        sorted_arr = sorted(arr)
+        mid = len(sorted_arr) // 2
+        if len(sorted_arr) % 2 == 1:
+            return sorted_arr[mid]
+        return (sorted_arr[mid - 1] + sorted_arr[mid]) / 2
+    
+
+    def mode(self, arr):
+        if not arr:
+            return []
+        frequency = {}
+        for num in arr:
+            frequency[num] = frequency.get(num, 0) + 1
+        max_freq = max(frequency.values())
+        return [num for num, freq in frequency.items() if freq == max_freq]
