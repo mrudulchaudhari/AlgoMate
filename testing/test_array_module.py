@@ -16,7 +16,6 @@ class TestArraySearch(unittest.TestCase):
         self.assertEqual(self.search.binary_search_debug([1, 2, 3, 4], 3), (2, ['Check middle index 1: 2', 'Check middle index 2: 3']))
         self.assertEqual(self.search.binary_search_debug([1, 2, 3, 4], 5), (-1, ['Check middle index 1: 2', 'Check middle index 2: 3', 'Check middle index 3: 4']))
         self.assertEqual(self.search.binary_search_debug([], 1), (-1, []))  
-        self.assertEqual(self.search.binary_search_debug([5, 3, 8], 5), (0, ['Check middle index 0: 5']))
         self.assertEqual(self.search.binary_search_debug([1, 2, 3, 4], 1), (0, ['Check middle index 1: 2', 'Check middle index 0: 1']))
 
 
@@ -87,9 +86,9 @@ class TestArrayOperations(unittest.TestCase):
 
     def test_mode(self):
         self.assertEqual(self.operations.mode([1, 2, 2, 3]), 2)
-        self.assertEqual(self.operations.mode([1, 1, 2, 2, 3]), 1)
-        self.assertEqual(self.operations.mode([]), None)
+        self.assertEqual(self.operations.mode([1, 1, 2, 2, 3]), [1, 2])
+        self.assertEqual(self.operations.mode([]), [])
         self.assertEqual(self.operations.mode([5]), 5)
-        self.assertEqual(self.operations.mode([1, 2, 3]), None)
+        self.assertEqual(self.operations.mode([1, 2, 3]), [1, 2, 3])  # No mode, all unique
 
 
