@@ -16,15 +16,15 @@
     <h2>Array Search</h2>
     <form method="POST">
         <div class="form-group">
-            <label>Enter numbers (comma separated):</label>
-            <input type="text" name="numbers" value="{{ numbers_input or '' }}" required placeholder="e.g. 5,3,8,1">
-        </div>
-        <div class="form-group">
             <label>Select Search Algorithm:</label>
             <select name="search_algorithm" required>
                 <option value="linear" {% if search_algorithm_input=='linear' %}selected{% endif %}>Linear Search</option>
                 <option value="binary" {% if search_algorithm_input=='binary' %}selected{% endif %}>Binary Search</option>
             </select>
+        </div>
+        <div class="form-group">
+            <label>Enter numbers (comma separated):</label>
+            <input type="text" name="numbers" value="{{ numbers_input or '' }}" required placeholder="e.g. 5,3,8,1">
         </div>
         <div class="form-group">
             <label>Search Element:</label>
@@ -37,10 +37,6 @@
     <h2>Sorting Algorithms</h2>
     <form method="POST">
         <div class="form-group">
-            <label>Enter numbers (comma separated):</label>
-            <input type="text" name="numbers" value="{{ numbers_input or '' }}" required placeholder="e.g. 5,3,8,1">
-        </div>
-        <div class="form-group">
             <label>Select Algorithm:</label>
             <select name="algorithm" required>
                 <option value="bubble" {% if algorithm_input=='bubble' %}selected{% endif %}>Bubble Sort</option>
@@ -52,16 +48,16 @@
 
             </select>
         </div>
+        <div class="form-group">
+            <label>Enter numbers (comma separated):</label>
+            <input type="text" name="numbers" value="{{ numbers_input or '' }}" required placeholder="e.g. 5,3,8,1">
+        </div>
         <button type="submit">Sort</button>
     </form>
 
     {% elif active_sub == 'operations' %}
     <h2>Array Operations</h2>
     <form method="POST">
-        <div class="form-group">
-            <label>Enter numbers (comma separated):</label>
-            <input type="text" name="numbers" value="{{ numbers_input or '' }}" required placeholder="e.g. 5,3,8,1">
-        </div>
         <div class="form-group">
             <label>Select Operation:</label>
             <select name="operation" required>
@@ -76,6 +72,10 @@
                 <option value="median" {% if operation_input=='median' %}selected{% endif %}>Median</option>
                 <option value="mode" {% if operation_input=='mode' %}selected{% endif %}>Mode</option>
             </select>
+        </div>
+        <div class="form-group">
+            <label>Enter numbers (comma separated):</label>
+            <input type="text" name="numbers" value="{{ numbers_input or '' }}" required placeholder="e.g. 5,3,8,1">
         </div>
         <button type="submit">Execute</button>
     </form>
