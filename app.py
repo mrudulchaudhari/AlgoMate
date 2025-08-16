@@ -184,6 +184,9 @@ def array_toolkit():
                 "rotate_right": ("Rotate Right", operations_func.rotate_right),
                 "remove_duplicates": ("Remove Duplicates", operations_func.remove_duplicates),
                 "max_min": ("Max / Min", operations_func.max_min),
+                "mean": ("Mean", operations_func.mean),
+                "median": ("Median", operations_func.median),
+                "mode": ("Mode", operations_func.mode),
             }
             if operation_input in op_map:
                 operation_name, func = op_map[operation_input]
