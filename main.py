@@ -1,5 +1,8 @@
 # The Stack class is a reusable data structure.
 # It's good practice to keep it as a standalone class.
+import math
+
+
 class Stack:
     """A simple Stack implementation."""
 
@@ -250,3 +253,13 @@ class MathFunctions:
                 return False
             i += 6
         return True
+
+
+    def lcm(self, a, b):
+        """Calculates the least common multiple of two numbers."""
+
+        return a*b // math.gcd(a, b)
+
+
+    def hcf(self, a, b):
+        return math.gcd(a, b)
