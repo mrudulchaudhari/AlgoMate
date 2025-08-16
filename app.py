@@ -123,23 +123,44 @@ def math_page():
 
 @app.route("/array", methods=["GET", "POST"])
 def array_toolkit():
-    """Unified page for Array Search, Sorting, and Operations"""
     active_sub = request.args.get("sub", "sorting")  # default to sorting
     result = None
     steps = []
     numbers_input = ""
     search_element_input = ""
-    search_algorithm_input = "linear"  # default
+    search_algorithm_input = "linear"
     algorithm_input = ""
     operation_input = ""
     algo_name = ""
     operation_name = ""
+    number2_input = ""
+    error = None
 
     if request.method == "POST":
         numbers_input = request.form.get("numbers", "").strip()
-        numbers = [int(x.strip()) for x in numbers_input.split(",") if x.strip().isdigit()]
 
-        if active_sub == "search":
+        try:
+            numbers = [int(x.strip()) for x in numbers_input.split(",") if x.strip()]
+        except ValueError:
+            return render_template(
+                "array.html",
+                active_sub=active_sub,
+                result="Error: Please enter valid integers only.",
+                steps=steps,
+                numbers_input=numbers_input,
+                search_element_input=search_element_input,
+                search_algorithm_input=search_algorithm_input,
+                algorithm_input=algorithm_input,
+                operation_input=operation_input,
+                algo_name=algo_name,
+                operation_name=operation_name,
+                active_page="array"
+            )
+
+        if not numbers:
+            result = "Error: Please enter at least one number."
+
+        elif active_sub == "search":
             search_element_input = request.form.get("search_element", "").strip()
             search_algorithm_input = request.form.get("search_algorithm", "linear").strip()
 
@@ -150,11 +171,10 @@ def array_toolkit():
                 if search_algorithm_input == "linear":
                     result, steps = search_func.linear_search_debug(numbers, elem)
                 elif search_algorithm_input == "binary":
-                    # Check if array is sorted
                     if numbers == sorted(numbers):
                         result, steps = search_func.binary_search_debug(numbers, elem)
                     else:
-                        result = "Error: Binary search requires a sorted array. Please enter a sorted array."
+                        result = "Error: Binary search requires a sorted array."
                 else:
                     result = "Error: Invalid search algorithm selected."
 
@@ -176,6 +196,7 @@ def array_toolkit():
 
         elif active_sub == "operations":
             operation_input = request.form.get("operation", "").strip()
+            number2_input = request.form.get("number2", "").strip()  # ✅ capture k if provided
             op_map = {
                 "sum": ("Sum", operations_func.sum_array),
                 "product": ("Product", operations_func.product_array),
@@ -188,11 +209,20 @@ def array_toolkit():
                 "median": ("Median", operations_func.median),
                 "mode": ("Mode", operations_func.mode),
             }
+
             if operation_input in op_map:
                 operation_name, func = op_map[operation_input]
-                result = func(numbers)
+                if operation_input in ["rotate_left", "rotate_right"]:
+                    try:
+                        k = int(number2_input)
+                        result = func(numbers, k)
+                    except ValueError:
+                        result = "Error: Please enter a valid integer for k."
+                else:
+                    result = func(numbers)
             else:
                 result = "Error: Invalid operation selected."
+
 
     return render_template(
         "array.html",
@@ -206,9 +236,9 @@ def array_toolkit():
         operation_input=operation_input,
         algo_name=algo_name,
         operation_name=operation_name,
+        number2_input=number2_input,
         active_page="array"
     )
-
 
 if __name__ == "__main__":
     app.run(debug=True)
