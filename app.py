@@ -63,44 +63,62 @@ def convert():
         conversion_input=conversion_input,
         active_page="convert"
     )
-
-
 @app.route("/math", methods=["GET", "POST"])
 def math_page():
-    """Handles math operations like factorial, prime check, etc."""
     result = None
     number_input = ""
+    number2_input = ""
     operation_input = ""
 
     if request.method == "POST":
         operation_input = request.form.get("operation", "").strip()
         number_input = request.form.get("number", "").strip()
+        number2_input = request.form.get("number2", "").strip()
 
-        if number_input.isdigit():
-            num = int(number_input)
-            try:
-                if operation_input == "factorial":
-                    result = math_funcs.factorial(num)
-                elif operation_input == "fibonacci":
-                    result = math_funcs.fibonacci(num)
-                elif operation_input == "is_prime":
-                    result = math_funcs.is_prime(num)
-                elif operation_input == "next_prime":
-                    result = math_funcs.next_prime(num)
-                else:
-                    result = "Error: Invalid operation selected."
-            except Exception as e:
-                result = f"An error occurred: {str(e)}"
+        if operation_input in ["lcm", "hcf"]:
+            # ✅ for two-number operations
+            if number_input.isdigit() and number2_input.isdigit():
+                num1 = int(number_input)
+                num2 = int(number2_input)
+                try:
+                    if operation_input == "lcm":
+                        result = math_funcs.lcm(num1, num2)
+                    elif operation_input == "hcf":
+                        result = math_funcs.hcf(num1, num2)
+                except Exception as e:
+                    result = f"An error occurred: {str(e)}"
+            else:
+                result = "Error: Please enter valid integers for both numbers."
         else:
-            result = "Error: Please enter a valid non-negative integer."
+            # ✅ for single-number operations
+            if number_input.isdigit():
+                num = int(number_input)
+                try:
+                    if operation_input == "factorial":
+                        result = math_funcs.factorial(num)
+                    elif operation_input == "fibonacci":
+                        result = math_funcs.fibonacci(num)
+                    elif operation_input == "is_prime":
+                        result = math_funcs.is_prime(num)
+                    elif operation_input == "next_prime":
+                        result = math_funcs.next_prime(num)
+                    else:
+                        result = "Error: Invalid operation selected."
+                except Exception as e:
+                    result = f"An error occurred: {str(e)}"
+            else:
+                result = "Error: Please enter a valid non-negative integer."
 
     return render_template(
         "math.html",
         result=result,
         number_input=number_input,
+        number2_input=number2_input,
         operation_input=operation_input,
         active_page="math"
     )
+
+
 
 
 @app.route("/array", methods=["GET", "POST"])
