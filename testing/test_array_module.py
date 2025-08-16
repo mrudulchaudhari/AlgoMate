@@ -1,5 +1,18 @@
 import unittest
-from array_module import ArrayOperations, ArraySearch
+from array_module import ArrayOperations, ArraySearch, SortingFunctions
+
+
+class TestSortingFunctions(unittest.TestCase):
+    def setUp(self):
+        self.sorting = SortingFunctions()
+
+    def test_bubble_sort_debug(self):
+        result, steps = self.sorting.bubble_sort_debug([3, 2, 1])
+        self.assertEqual(result, [1, 2, 3])
+        self.assertIn("Pass 1, swap index 0 & 1: [2, 3, 1]", steps)
+        self.assertIn("Pass 1, swap index 1 & 2: [2, 1, 3]", steps)
+        self.assertIn("Pass 2, swap index 0 & 1: [1, 2, 3]", steps)
+
 
 
 class TestArraySearch(unittest.TestCase):
