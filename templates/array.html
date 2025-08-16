@@ -49,6 +49,7 @@
                 <option value="merge" {% if algorithm_input=='merge' %}selected{% endif %}>Merge Sort</option>
                 <option value="counting" {% if algorithm_input=='counting' %}selected{% endif %}>Counting Sort</option>
                 <option value="quick" {% if algorithm_input=='quick' %}selected{% endif %}>Quick Sort</option>
+
             </select>
         </div>
         <button type="submit">Sort</button>
@@ -71,6 +72,9 @@
                 <option value="rotate_right" {% if operation_input=='rotate_right' %}selected{% endif %}>Rotate Right</option>
                 <option value="remove_duplicates" {% if operation_input=='remove_duplicates' %}selected{% endif %}>Remove Duplicates</option>
                 <option value="max_min" {% if operation_input=='max_min' %}selected{% endif %}>Max / Min</option>
+                <option value="mean" {% if operation_input=='mean' %}selected{% endif %}>Mean</option>
+                <option value="median" {% if operation_input=='median' %}selected{% endif %}>Median</option>
+                <option value="mode" {% if operation_input=='mode' %}selected{% endif %}>Mode</option>
             </select>
         </div>
         <button type="submit">Execute</button>
