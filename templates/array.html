@@ -8,6 +8,7 @@
     <a href="{{ url_for('array_toolkit', sub='search') }}" class="{% if active_sub=='search' %}active{% endif %}">Search</a>
     <a href="{{ url_for('array_toolkit', sub='sorting') }}" class="{% if active_sub=='sorting' %}active{% endif %}">Sorting</a>
     <a href="{{ url_for('array_toolkit', sub='operations') }}" class="{% if active_sub=='operations' %}active{% endif %}">Operations</a>
+    <a href="{{ url_for('array_toolkit', sub='statistics') }}" class="{% if active_sub=='statistics' %}active{% endif %}">Statistics</a>
 </div>
 
 <!-- Dynamic Card based on selected sub-tab -->
@@ -81,6 +82,33 @@
         <label for="number2">Enter k value:</label>
         <input type="text" name="number2" value="{{ number2_input or '' }}">
     </div>   
+
+    <button type="submit">Execute</button>
+</form>
+
+
+{% elif active_sub == 'statistics' %}
+<h2>Statistical Operations</h2>
+<form method="POST">
+    <div class="form-group">
+        <label>Select Operation:</label>
+        <select id="statistics" name="statstics" required onchange="toggleSecondNumber()">
+            <option value="mean" {% if operation_input=='mean' %}selected{% endif %}>Mean</option>
+            <option value="median" {% if operation_input=='median' %}selected{% endif %}>Median</option>
+            <option value="mode" {% if operation_input=='mode' %}selected{% endif %}>Mode</option>
+            <option value="variance" {% if operation_input=='variance' %}selected{% endif %}>Variance</option>
+            <option value="stddev" {% if operation_input=='stddev' %}selected{% endif %}>Standard Deviation</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Enter numbers (comma separated):</label>
+        <input type="text" name="numbers" value="{{ numbers_input or '' }}" required placeholder="e.g. 5,3,8,1">
+    </div>
+    <!-- Second number input for k -->
+    <div id="second-number" style="display: none;">
+        <label for="number2">Enter k value:</label>
+        <input type="text" name="number2" value="{{ number2_input or '' }}">
+    </div>
 
     <button type="submit">Execute</button>
 </form>
