@@ -92,7 +92,7 @@
 <form method="POST">
     <div class="form-group">
         <label>Select Operation:</label>
-        <select id="statistics" name="statstics" required onchange="toggleSecondNumber()">
+        <select id="statistics" name="statistics" required onchange="toggleSecondNumber()">
             <option value="mean" {% if operation_input=='mean' %}selected{% endif %}>Mean</option>
             <option value="median" {% if operation_input=='median' %}selected{% endif %}>Median</option>
             <option value="mode" {% if operation_input=='mode' %}selected{% endif %}>Mode</option>
@@ -104,12 +104,6 @@
         <label>Enter numbers (comma separated):</label>
         <input type="text" name="numbers" value="{{ numbers_input or '' }}" required placeholder="e.g. 5,3,8,1">
     </div>
-    <!-- Second number input for k -->
-    <div id="second-number" style="display: none;">
-        <label for="number2">Enter k value:</label>
-        <input type="text" name="number2" value="{{ number2_input or '' }}">
-    </div>
-
     <button type="submit">Execute</button>
 </form>
 {% endif %}
