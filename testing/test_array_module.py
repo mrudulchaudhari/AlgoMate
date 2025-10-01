@@ -1,5 +1,5 @@
 import unittest
-from array_module import ArrayOperations, ArraySearch, SortingFunctions
+from array_module import ArrayOperations, ArraySearch, SortingFunctions, StatisticalOperations
 
 
 class TestSortingFunctions(unittest.TestCase):
@@ -82,26 +82,31 @@ class TestArrayOperations(unittest.TestCase):
         self.assertEqual(self.operations.max_min([5]), (5, 5))
         self.assertEqual(self.operations.max_min([1, 2, 3, 4]), (4, 1))
 
+
+class TestStatisticalOperations(unittest.TestCase):
+    def setUp(self):
+        self.statistics = StatisticalOperations()
+
     def test_mean(self):
-        self.assertEqual(self.operations.mean([1, 2, 3]), 2.0)
-        self.assertEqual(self.operations.mean([-1, -2, -3]), -2.0)
-        self.assertEqual(self.operations.mean([]), 0)
-        self.assertEqual(self.operations.mean([5]), 5.0)
-        self.assertEqual(self.operations.mean([1, 2, 3, 4]), 2.5)
+        self.assertEqual(self.statistics.mean([1, 2, 3]), 2.0)
+        self.assertEqual(self.statistics.mean([-1, -2, -3]), -2.0)
+        self.assertEqual(self.statistics.mean([]), 0)
+        self.assertEqual(self.statistics.mean([5]), 5.0)
+        self.assertEqual(self.statistics.mean([1, 2, 3, 4]), 2.5)
 
     def test_median(self):
-        self.assertEqual(self.operations.median([1, 2, 3]), 2.0)
-        self.assertEqual(self.operations.median([1, 2, 3, 4]), 2.5)
-        self.assertEqual(self.operations.median([3, 1, 2]), 2.0)
-        self.assertEqual(self.operations.median([]), 0)
-        self.assertEqual(self.operations.median([5]), 5.0)
+        self.assertEqual(self.statistics.median([1, 2, 3]), 2.0)
+        self.assertEqual(self.statistics.median([1, 2, 3, 4]), 2.5)
+        self.assertEqual(self.statistics.median([3, 1, 2]), 2.0)
+        self.assertEqual(self.statistics.median([]), 0)
+        self.assertEqual(self.statistics.median([5]), 5.0)
 
     def test_mode(self):
-        self.assertEqual(self.operations.mode([1, 2, 2, 3]), 2)
-        self.assertEqual(self.operations.mode([1, 1, 2, 2, 3]), [1, 2])
-        self.assertEqual(self.operations.mode([]), [])
-        self.assertEqual(self.operations.mode([5]), 5)
-        self.assertEqual(self.operations.mode([1, 2, 3]), [1, 2, 3])  # No mode, all unique
+        self.assertEqual(self.statistics.mode([1, 2, 2, 3]), 2)
+        self.assertEqual(self.statistics.mode([1, 1, 2, 2, 3]), [1, 2])
+        self.assertEqual(self.statistics.mode([]), None)
+        self.assertEqual(self.statistics.mode([5]), 5)
+        self.assertEqual(self.statistics.mode([1, 2, 3]), [1, 2, 3])  # No mode, all unique
 
 
 if __name__ == '__main__':
