@@ -218,11 +218,14 @@ class ArrayOperations:
             return (None, None)
         return (max(arr), min(arr))
 
+
+class StatisticalOperations:
+    """Statistical operations."""
+
     def mean(self, arr):
         if not arr:
             return 0
         return sum(arr) / len(arr)
-    
 
     def median(self, arr):
         if not arr:
@@ -232,7 +235,6 @@ class ArrayOperations:
         if len(sorted_arr) % 2 == 1:
             return sorted_arr[mid]
         return (sorted_arr[mid - 1] + sorted_arr[mid]) / 2
-    
 
     def mode(self, arr):
         if not arr:
