@@ -236,8 +236,10 @@ class ArrayOperations:
 
     def mode(self, arr):
         if not arr:
-            return []
-        counts = Counter(arr)
-        max_freq = max(counts.values())
-        modes = [num for num, freq in counts.items() if freq == max_freq]
-        return modes[0] if len(modes) == 1 else modes
+            return None  # instead of []
+        freq = {}
+        for num in arr:
+            freq[num] = freq.get(num, 0) + 1
+        max_count = max(freq.values())
+        modes = [key for key, val in freq.items() if val == max_count]
+        return modes if len(modes) > 1 else modes[0]

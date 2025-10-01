@@ -14,7 +14,6 @@ class TestSortingFunctions(unittest.TestCase):
         self.assertIn("Pass 2, swap index 0 & 1: [1, 2, 3]", steps)
 
 
-
 class TestArraySearch(unittest.TestCase):
     def setUp(self):
         self.search = ArraySearch()
