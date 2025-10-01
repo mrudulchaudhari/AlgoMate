@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, url_for
 from main import ExpressionConverter, MathFunctions
-from array_module import SortingFunctions, ArraySearch, ArrayOperations
+from array_module import SortingFunctions, ArraySearch, ArrayOperations, StatisticalOperations
 
 app = Flask(__name__, static_folder='static')
 app.config['VERSION'] = '1.0.0'
@@ -11,6 +11,7 @@ math_funcs = MathFunctions()
 sort_func = SortingFunctions()
 search_func = ArraySearch()
 operations_func = ArrayOperations()
+statistical_funcs = StatisticalOperations()
 
 
 @app.route("/")
@@ -223,6 +224,25 @@ def array_toolkit():
             else:
                 result = "Error: Invalid operation selected."
 
+
+        elif active_sub == "statistics":
+            statistics_input = request.form.get("statistics", "").strip()
+            op_map = {
+                "mean": ("Mean", statistical_funcs.mean),
+                "median": ("Median", statistical_funcs.median),
+                "mode": ("Mode", statistical_funcs.mode),
+            }
+            if statistics_input in op_map:
+                operation_name, func = op_map[statistics_input]
+                try:
+                    result = func(numbers)
+                except Exception as e:
+                    result = f"An error occurred while computing {operation_name.lower()}: {str(e)}"
+
+            elif statistics_input in ['variance', 'stddev']:
+                result = "HIHI: Will add these soon."
+            else:
+                result = "Error: Invalid statistics operation selected."
 
     return render_template(
         "array.html",
