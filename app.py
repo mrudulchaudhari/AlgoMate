@@ -206,9 +206,6 @@ def array_toolkit():
                 "rotate_right": ("Rotate Right", operations_func.rotate_right),
                 "remove_duplicates": ("Remove Duplicates", operations_func.remove_duplicates),
                 "max_min": ("Max / Min", operations_func.max_min),
-                "mean": ("Mean", operations_func.mean),
-                "median": ("Median", operations_func.median),
-                "mode": ("Mode", operations_func.mode),
             }
 
             if operation_input in op_map:
@@ -231,6 +228,7 @@ def array_toolkit():
                 "mean": ("Mean", statistical_funcs.mean),
                 "median": ("Median", statistical_funcs.median),
                 "mode": ("Mode", statistical_funcs.mode),
+                "variance": ("Variance", statistical_funcs.variance),
             }
             if statistics_input in op_map:
                 operation_name, func = op_map[statistics_input]
@@ -239,7 +237,7 @@ def array_toolkit():
                 except Exception as e:
                     result = f"An error occurred while computing {operation_name.lower()}: {str(e)}"
 
-            elif statistics_input in ['variance', 'stddev']:
+            elif statistics_input in ['stddev']:
                 result = "HIHI: Will add these soon."
             else:
                 result = "Error: Invalid statistics operation selected."
