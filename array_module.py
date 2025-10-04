@@ -262,6 +262,16 @@ class StatisticalOperations:
 
         return round(variance, 2)
 
+    def stddev(self, arr):
+        if not arr:
+            return None
+
+        stddev_sq = self.variance(arr)
+        if stddev_sq == "0.0":
+            return "0.0"
+
+        return round(stddev_sq**0.5, 2)
+
 # if __name__ == '__main__':
 #     s = StatisticalOperations()
 #     var = s.variance([1,1,1])
