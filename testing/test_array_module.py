@@ -113,6 +113,12 @@ class TestStatisticalOperations(unittest.TestCase):
         self.assertEqual(self.statistics.variance([1, 2, 3]), 0.67)
         self.assertEqual(self.statistics.variance([5, 7, 9, 10, 14, 15]), 12.67)
 
+    def test_stddev(self):
+        self.assertEqual(self.statistics.stddev([1, 1, 1]),"0.0")
+        self.assertEqual(self.statistics.stddev([1, 2, 3]), 0.82)
+        self.assertEqual(self.statistics.stddev([]), None)
+        self.assertEqual(self.statistics.stddev([1,2,3,4,5]), 1.41)
+
 if __name__ == '__main__':
     unittest.main()
 
