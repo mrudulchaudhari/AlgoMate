@@ -108,6 +108,10 @@ class TestStatisticalOperations(unittest.TestCase):
         self.assertEqual(self.statistics.mode([5]), 5)
         self.assertEqual(self.statistics.mode([1, 2, 3]), [1, 2, 3])  # No mode, all unique
 
+    def test_variance(self):
+        self.assertEqual(self.statistics.variance([1,1,1]),"0.0")
+        self.assertEqual(self.statistics.variance([1, 2, 3]), 0.67)
+        self.assertEqual(self.statistics.variance([5, 7, 9, 10, 14, 15]), 12.67)
 
 if __name__ == '__main__':
     unittest.main()
