@@ -229,6 +229,7 @@ def array_toolkit():
                 "median": ("Median", statistical_funcs.median),
                 "mode": ("Mode", statistical_funcs.mode),
                 "variance": ("Variance", statistical_funcs.variance),
+                "stddev": ("Standard Deviation", statistical_funcs.stddev),
             }
             if statistics_input in op_map:
                 operation_name, func = op_map[statistics_input]
@@ -237,8 +238,8 @@ def array_toolkit():
                 except Exception as e:
                     result = f"An error occurred while computing {operation_name.lower()}: {str(e)}"
 
-            elif statistics_input in ['stddev']:
-                result = "HIHI: Will add these soon."
+            # elif statistics_input in ['stddev']:
+            #     result = "HIHI: Will add these soon."
             else:
                 result = "Error: Invalid statistics operation selected."
 
