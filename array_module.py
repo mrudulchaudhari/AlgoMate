@@ -225,7 +225,8 @@ class StatisticalOperations:
     def mean(self, arr):
         if not arr:
             return 0
-        return sum(arr) / len(arr)
+        mean = sum(arr) / len(arr)
+        return round(mean, 2)
 
     def median(self, arr):
         if not arr:
@@ -245,3 +246,15 @@ class StatisticalOperations:
         max_count = max(freq.values())
         modes = [key for key, val in freq.items() if val == max_count]
         return modes if len(modes) > 1 else modes[0]
+
+    def variance(self, arr):
+        if not arr:
+            return None # instead of []
+
+        mean = self.mean(arr)
+        summ = 0
+        n = len(arr)
+        for num in arr:
+            summ += (num - mean)**2
+        variance = summ / n
+        return round(variance, 2)
