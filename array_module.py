@@ -249,12 +249,20 @@ class StatisticalOperations:
 
     def variance(self, arr):
         if not arr:
-            return None # instead of []
-
+            return None
         mean = self.mean(arr)
         summ = 0
         n = len(arr)
         for num in arr:
             summ += (num - mean)**2
         variance = summ / n
+
+        if variance == 0:
+            return "0.0"
+
         return round(variance, 2)
+
+# if __name__ == '__main__':
+#     s = StatisticalOperations()
+#     var = s.variance([1,1,1])
+#     print(var)
