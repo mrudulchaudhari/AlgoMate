@@ -32,6 +32,21 @@ class TestMathFunctions(unittest.TestCase):
         self.assertEqual(self.math.next_prime(47), "The next prime after 47 is 53")
         self.assertEqual(self.math.next_prime(99), "The next prime after 99 is 101")
 
+    def test_lcm(self):
+        self.assertEqual(self.math.lcm(2, 4), 4)
+        self.assertEqual(self.math.lcm(15, 20), 60)
+        self.assertEqual(self.math.lcm(48, 60), 240)
+        self.assertEqual(self.math.lcm(48, 49), 48*49)
+        self.assertEqual(self.math.lcm(21, 63), 63)
+
+    def test_hcf(self):
+        self.assertEqual(self.math.hcf(2, 4), 2)
+        self.assertEqual(self.math.hcf(15, 20), 5)
+        self.assertEqual(self.math.hcf(48, 60), 12)
+        self.assertEqual(self.math.hcf(48, 49), 1)
+        self.assertEqual(self.math.hcf(21, 63), 21)
+
+
 
 if __name__ == '__main__':
     unittest.main()
